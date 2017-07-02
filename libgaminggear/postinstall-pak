@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+echo "Creating group uinput-users"
+groupadd --system uinput-users
+
+echo "Populating group uinput-users with users"
+for home_dir in /home/*/
+do
+    if [[ -d "$home_dir" && "lost+found" != "$(basename $home_dir)" ]]; then
+        user="$(stat -c "%U" $home_dir)"
+        echo "Adding user $user to uinput-users"
+        usermod -a -G uinput-users $user
+    fi
+done

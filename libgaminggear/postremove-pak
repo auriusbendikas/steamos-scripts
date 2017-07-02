@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+#!/bin/bash -e
+
+echo "Deleting group uinput-users"
+groupdel uinput-users
